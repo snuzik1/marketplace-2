@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LUMERA — Вход</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body class="login-page">
+
+
+    <main class="login-wrapper">
+
+        <div class="login-card">
+
+            <a href="index.html" class="login-logo">
+                LUMERA
+            </a>
+
+            <span class="login-eyebrow">
+                ЛИЧНЫЙ КАБИНЕТ
+            </span>
+
+            <h1>
+                Войти в аккаунт
+            </h1>
+
+            <p class="login-description">
+                Выберите тип аккаунта и продолжите работу.
+            </p>
+
+
+            <!-- ROLE -->
+
+            <div class="role-selector">
+
+                <button
+                    class="role-button active"
+                    data-role="buyer"
+                    type="button"
+                >
+                    <span class="role-icon">◉</span>
+
+                    <span>
+                        <strong>Покупатель</strong>
+                        <small>Покупки и заказы</small>
+                    </span>
+                </button>
+
+
+                <button
+                    class="role-button"
+                    data-role="moderator"
+                    type="button"
+                >
+                    <span class="role-icon">◈</span>
+
+                    <span>
+                        <strong>Модератор</strong>
+                        <small>Управление магазином</small>
+                    </span>
+                </button>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <form id="loginForm">
+
+                <label>
+                    Email
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="you@example.com"
+                        required
+                    >
+                </label>
+
+
+                <label>
+                    Пароль
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Введите пароль"
+                        required
+                    >
+                </label>
+
+
+                <button
+                    type="submit"
+                    class="login-submit"
+                >
+                    Войти
+                </button>
+
+
+                <p
+                    id="loginMessage"
+                    class="login-message"
+                ></p>
+
+            </form>
+
+
+            <div class="login-register">
+
+                Нет аккаунта?
+
+                <a href="register.html">
+                    Зарегистрироваться
+                </a>
+
+            </div>
+
+
+            <a
+                href="index.html"
+                class="login-back"
+            >
+                ← Вернуться в магазин
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <script src="login.js"></script>
+
+</body>
+</html>

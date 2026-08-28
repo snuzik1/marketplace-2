@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>LUMERA — Личный кабинет</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+
+<body class="account-page">
+
+
+<header class="header">
+
+    <div class="container header-inner">
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            LUMERA
+        </a>
+
+
+        <nav class="main-nav">
+
+            <a href="index.html#catalog">
+                Каталог
+            </a>
+
+            <a href="index.html#categories">
+                Категории
+            </a>
+
+            <a href="index.html#new">
+                Новинки
+            </a>
+
+        </nav>
+
+
+        <div class="account-header">
+
+            <span id="userEmail">
+                Загрузка...
+            </span>
+
+            <button
+                id="logoutButton"
+                class="account-logout"
+            >
+                Выйти
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <section class="account-hero">
+
+        <div class="container">
+
+            <span class="eyebrow">
+                ЛИЧНЫЙ КАБИНЕТ
+            </span>
+
+            <h1>
+                Добро пожаловать
+            </h1>
+
+            <p>
+                Здесь находятся ваши заказы,
+                избранные товары и настройки аккаунта.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="account-content">
+
+        <div class="container account-grid">
+
+
+            <!-- PROFILE -->
+
+            <aside class="account-sidebar">
+
+                <div class="account-profile">
+
+                    <div class="avatar" id="avatar">
+                        L
+                    </div>
+
+                    <h3 id="profileEmail">
+                        Загрузка...
+                    </h3>
+
+                    <span>
+                        Покупатель
+                    </span>
+
+                </div>
+
+
+                <nav class="account-nav">
+
+                    <a
+                        href="#overview"
+                        class="active"
+                    >
+                        Обзор
+                    </a>
+
+                    <a href="#orders">
+                        Заказы
+                    </a>
+
+                    <a href="#favorites">
+                        Избранное
+                    </a>
+
+                    <a href="#settings">
+                        Настройки
+                    </a>
+
+                </nav>
+
+            </aside>
+
+
+            <!-- MAIN -->
+
+            <div class="account-main">
+
+
+                <!-- OVERVIEW -->
+
+                <section
+                    id="overview"
+                    class="account-section"
+                >
+
+                    <div class="account-section-heading">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                ОБЗОР
+                            </span>
+
+                            <h2>
+                                Ваш аккаунт
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="account-stats">
+
+
+                        <div class="account-stat">
+
+                            <span>
+                                Заказы
+                            </span>
+
+                            <strong>
+                                3
+                            </strong>
+
+                        </div>
+
+
+                        <div class="account-stat">
+
+                            <span>
+                                Избранное
+                            </span>
+
+                            <strong>
+                                7
+                            </strong>
+
+                        </div>
+
+
+                        <div class="account-stat">
+
+                            <span>
+                                Потрачено
+                            </span>
+
+                            <strong>
+                                $428
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ORDERS -->
+
+                <section
+                    id="orders"
+                    class="account-section"
+                >
+
+                    <div class="account-section-heading">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                ИСТОРИЯ
+                            </span>
+
+                            <h2>
+                                Последние заказы
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="orders-list">
+
+
+                        <div class="order-card">
+
+                            <div>
+
+                                <span>
+                                    Заказ #1003
+                                </span>
+
+                                <small>
+                                    25 августа 2026
+                                </small>
+
+                            </div>
+
+                            <strong>
+                                $129
+                            </strong>
+
+                            <span class="order-status">
+                                Доставлен
+                            </span>
+
+                        </div>
+
+
+                        <div class="order-card">
+
+                            <div>
+
+                                <span>
+                                    Заказ #1002
+                                </span>
+
+                                <small>
+                                    18 августа 2026
+                                </small>
+
+                            </div>
+
+                            <strong>
+                                $89
+                            </strong>
+
+                            <span class="order-status processing">
+                                В обработке
+                            </span>
+
+                        </div>
+
+
+                        <div class="order-card">
+
+                            <div>
+
+                                <span>
+                                    Заказ #1001
+                                </span>
+
+                                <small>
+                                    11 августа 2026
+                                </small>
+
+                            </div>
+
+                            <strong>
+                                $210
+                            </strong>
+
+                            <span class="order-status">
+                                Доставлен
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </section>
+
+
+                <!-- FAVORITES -->
+
+                <section
+                    id="favorites"
+                    class="account-section"
+                >
+
+                    <div class="account-section-heading">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                СОХРАНЁННОЕ
+                            </span>
+
+                            <h2>
+                                Избранное
+                            </h2>
+
+                        </div>
+
+                        <a
+                            href="index.html#catalog"
+                            class="text-link"
+                        >
+                            В каталог →
+                        </a>
+
+                    </div>
+
+
+                    <div class="favorite-preview">
+
+
+                        <div class="favorite-item">
+                            Oversized Knit
+                        </div>
+
+                        <div class="favorite-item">
+                            Ceramic Set
+                        </div>
+
+                        <div class="favorite-item">
+                            Leather Wallet
+                        </div>
+
+
+                    </div>
+
+                </section>
+
+
+                <!-- SETTINGS -->
+
+                <section
+                    id="settings"
+                    class="account-section"
+                >
+
+                    <div class="account-section-heading">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                АККАУНТ
+                            </span>
+
+                            <h2>
+                                Настройки
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="settings-card">
+
+                        <div>
+
+                            <span>
+                                Email
+                            </span>
+
+                            <strong id="settingsEmail">
+                                Загрузка...
+                            </strong>
+
+                        </div>
+
+
+                        <button
+                            class="secondary-button"
+                            id="changeEmailButton"
+                        >
+                            Изменить
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="container footer-bottom">
+
+        <span>
+            © 2026 LUMERA
+        </span>
+
+        <a href="index.html">
+            Вернуться в магазин
+        </a>
+
+    </div>
+
+</footer>
+
+
+<script src="auth.js"></script>
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient.auth.getUser();
+
+
+        if (
+            error ||
+            !data ||
+            !data.user
+        ) {
+
+            window.location.href =
+                "login.html";
+
+            return;
+        }
+
+
+        const email =
+            data.user.email || "";
+
+
+        document.getElementById(
+            "userEmail"
+        ).textContent = email;
+
+
+        document.getElementById(
+            "profileEmail"
+        ).textContent = email;
+
+
+        document.getElementById(
+            "settingsEmail"
+        ).textContent = email;
+
+
+        const firstLetter =
+            email.charAt(0).toUpperCase();
+
+
+        document.getElementById(
+            "avatar"
+        ).textContent = firstLetter;
+
+    }
+);
+
+
+document
+    .getElementById("logoutButton")
+    .addEventListener(
+        "click",
+        async function () {
+
+            await supabaseClient.auth.signOut();
+
+            window.location.href =
+                "index.html";
+
+        }
+    );
+
+</script>
+
+
+</body>
+</html>

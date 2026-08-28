@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LUMERA — Marketplace</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="header">
+
+        <div class="container header-inner">
+
+            <a href="index.html" class="logo">
+                LUMERA
+            </a>
+
+
+            <nav class="main-nav">
+
+                <a href="#catalog">Каталог</a>
+                <a href="#categories">Категории</a>
+                <a href="#new">Новинки</a>
+                <a href="#popular">Популярное</a>
+
+            </nav>
+
+
+            <div class="header-actions">
+
+                <button class="icon-button" aria-label="Поиск">
+                    <span>⌕</span>
+                </button>
+
+                <a href="#" class="header-action" id="favoritesButton">
+                    Избранное
+                </a>
+
+                <a href="#" class="header-action" id="accountButton">
+                    Войти
+                </a>
+
+                <a href="#" class="cart-button">
+                    Корзина
+                    <span class="cart-count">0</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="container hero-grid">
+
+                <div class="hero-content">
+
+                    <span class="eyebrow">
+                        НОВАЯ КОЛЛЕКЦИЯ
+                    </span>
+
+                    <h1>
+                        Вещи,<br>
+                        которые хочется<br>
+                        <span>оставить себе.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Одежда, аксессуары и предметы для дома
+                        от независимых брендов и талантливых создателей.
+                    </p>
+
+                    <div class="hero-actions">
+
+                        <a href="#catalog" class="primary-button">
+                            Смотреть каталог
+                        </a>
+
+                        <a href="#categories" class="secondary-button">
+                            Категории
+                        </a>
+
+                    </div>
+
+                    <div class="hero-meta">
+
+                        <div>
+                            <strong>500+</strong>
+                            <span>товаров</span>
+                        </div>
+
+                        <div>
+                            <strong>80+</strong>
+                            <span>брендов</span>
+                        </div>
+
+                        <div>
+                            <strong>4.9</strong>
+                            <span>рейтинг</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-visual">
+
+                    <div class="hero-card main-card">
+
+                        <span class="hero-card-label">
+                            FEATURED
+                        </span>
+
+                        <div class="hero-product-shape">
+                            L
+                        </div>
+
+                        <div class="hero-card-bottom">
+
+                            <div>
+                                <span>Minimal Bag</span>
+                                <small>Atelier Lume</small>
+                            </div>
+
+                            <strong>
+                                $129
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="floating-note note-top">
+                        Новинки
+                    </div>
+
+                    <div class="floating-note note-bottom">
+                        Доставка от $50 бесплатно
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CATEGORIES
+        ========================== -->
+
+        <section class="categories-section" id="categories">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="eyebrow">
+                            ИССЛЕДУЙ
+                        </span>
+
+                        <h2>
+                            Категории
+                        </h2>
+                    </div>
+
+                    <a href="#catalog" class="text-link">
+                        Смотреть все →
+                    </a>
+
+                </div>
+
+
+                <div class="categories-grid">
+
+                    <a href="#catalog" class="category-card category-fashion">
+
+                        <span>01</span>
+
+                        <div>
+                            <h3>Одежда</h3>
+                            <p>Лаконичные вещи на каждый день</p>
+                        </div>
+
+                    </a>
+
+
+                    <a href="#catalog" class="category-card category-home">
+
+                        <span>02</span>
+
+                        <div>
+                            <h3>Для дома</h3>
+                            <p>Предметы, создающие атмосферу</p>
+                        </div>
+
+                    </a>
+
+
+                    <a href="#catalog" class="category-card category-accessories">
+
+                        <span>03</span>
+
+                        <div>
+                            <h3>Аксессуары</h3>
+                            <p>Детали, которые меняют образ</p>
+                        </div>
+
+                    </a>
+
+
+                    <a href="#catalog" class="category-card category-beauty">
+
+                        <span>04</span>
+
+                        <div>
+                            <h3>Красота</h3>
+                            <p>Уход и косметика</p>
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CATALOG
+        ========================== -->
+
+        <section class="catalog-section" id="catalog">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            ВЫБОР ДНЯ
+                        </span>
+
+                        <h2>
+                            Популярные товары
+                        </h2>
+
+                    </div>
+
+
+                    <div class="catalog-controls">
+
+                        <button class="filter-button active">
+                            Все
+                        </button>
+
+                        <button class="filter-button">
+                            Одежда
+                        </button>
+
+                        <button class="filter-button">
+                            Дом
+                        </button>
+
+                        <button class="filter-button">
+                            Аксессуары
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="products-grid" id="productsGrid">
+
+
+                    <!-- PRODUCT -->
+
+                    <article class="product-card">
+
+                        <div class="product-image image-one">
+
+                            <span class="product-badge">
+                                NEW
+                            </span>
+
+                            <button class="favorite-button">
+                                ♡
+                            </button>
+
+                            <div class="product-image-label">
+                                01
+                            </div>
+
+                        </div>
+
+
+                        <div class="product-info">
+
+                            <div>
+
+                                <h3>
+                                    Oversized Knit
+                                </h3>
+
+                                <p>
+                                    North Studio
+                                </p>
+
+                            </div>
+
+                            <strong>
+                                $89
+                            </strong>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PRODUCT -->
+
+                    <article class="product-card">
+
+                        <div class="product-image image-two">
+
+                            <span class="product-badge">
+                                HOT
+                            </span>
+
+                            <button class="favorite-button">
+                                ♡
+                            </button>
+
+                            <div class="product-image-label">
+                                02
+                            </div>
+
+                        </div>
+
+
+                        <div class="product-info">
+
+                            <div>
+
+                                <h3>
+                                    Ceramic Set
+                                </h3>
+
+                                <p>
+                                    Form Objects
+                                </p>
+
+                            </div>
+
+                            <strong>
+                                $64
+                            </strong>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PRODUCT -->
+
+                    <article class="product-card">
+
+                        <div class="product-image image-three">
+
+                            <button class="favorite-button">
+                                ♡
+                            </button>
+
+                            <div class="product-image-label">
+                                03
+                            </div>
+
+                        </div>
+
+
+                        <div class="product-info">
+
+                            <div>
+
+                                <h3>
+                                    Leather Wallet
+                                </h3>
+
+                                <p>
+                                    Morrow Studio
+                                </p>
+
+                            </div>
+
+                            <strong>
+                                $59
+                            </strong>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PRODUCT -->
+
+                    <article class="product-card">
+
+                        <div class="product-image image-four">
+
+                            <span class="product-badge">
+                                -20%
+                            </span>
+
+                            <button class="favorite-button">
+                                ♡
+                            </button>
+
+                            <div class="product-image-label">
+                                04
+                            </div>
+
+                        </div>
+
+
+                        <div class="product-info">
+
+                            <div>
+
+                                <h3>
+                                    Everyday Sneakers
+                                </h3>
+
+                                <p>
+                                    Forma Collective
+                                </p>
+
+                            </div>
+
+                            <strong>
+                                $112
+                            </strong>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FEATURE
+        ========================== -->
+
+        <section class="feature-section" id="new">
+
+            <div class="container feature-grid">
+
+                <div class="feature-visual">
+
+                    <div class="feature-shape">
+                        <span>LUMERA</span>
+                    </div>
+
+                </div>
+
+
+                <div class="feature-content">
+
+                    <span class="eyebrow">
+                        О НАС
+                    </span>
+
+                    <h2>
+                        Меньше шума.<br>
+                        Больше хороших вещей.
+                    </h2>
+
+                    <p>
+                        Мы собираем небольшие бренды и независимых
+                        создателей в одном месте, чтобы тебе не
+                        приходилось искать качественные вещи среди
+                        сотен одинаковых предложений.
+                    </p>
+
+                    <a href="#catalog" class="primary-button">
+                        Исследовать коллекцию
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ADVANTAGES
+        ========================== -->
+
+        <section class="advantages">
+
+            <div class="container advantages-grid">
+
+                <div class="advantage">
+
+                    <span>01</span>
+
+                    <h3>
+                        Отобранные товары
+                    </h3>
+
+                    <p>
+                        Мы выбираем продукты и бренды,
+                        которые действительно заслуживают внимания.
+                    </p>
+
+                </div>
+
+
+                <div class="advantage">
+
+                    <span>02</span>
+
+                    <h3>
+                        Безопасная покупка
+                    </h3>
+
+                    <p>
+                        Заказы и платежи проходят через
+                        защищённую систему.
+                    </p>
+
+                </div>
+
+
+                <div class="advantage">
+
+                    <span>03</span>
+
+                    <h3>
+                        Быстрая доставка
+                    </h3>
+
+                    <p>
+                        Отправляем заказы сразу после
+                        подтверждения покупки.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <div class="container footer-grid">
+
+            <div>
+
+                <a href="#home" class="logo">
+                    LUMERA
+                </a>
+
+                <p>
+                    Современный marketplace<br>
+                    для вещей, которые имеют значение.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Магазин
+                </h4>
+
+                <a href="#catalog">Все товары</a>
+                <a href="#new">Новинки</a>
+                <a href="#popular">Популярное</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Помощь
+                </h4>
+
+                <a href="#">Доставка</a>
+                <a href="#">Оплата</a>
+                <a href="#">Возврат</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Аккаунт
+                </h4>
+
+                <a href="login.html">Войти</a>
+                <a href="register.html">Регистрация</a>
+                <a href="account.html">Личный кабинет</a>
+
+            </div>
+
+        </div>
+
+
+        <div class="container footer-bottom">
+
+            <span>
+                © 2026 LUMERA
+            </span>
+
+            <a href="moderator.html">
+                Для продавцов
+            </a>
+
+        </div>
+
+    </footer>
+
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>

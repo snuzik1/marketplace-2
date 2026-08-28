@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LUMERA — Модератор</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="moderator-page">
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header class="moderator-header">
+
+    <div class="moderator-brand">
+
+        <a href="index.html" class="logo">
+            LUMERA
+        </a>
+
+        <span class="moderator-badge">
+            MODERATOR
+        </span>
+
+    </div>
+
+
+    <div class="moderator-user">
+
+        <span id="moderatorEmail">
+            moderator@lumera.local
+        </span>
+
+        <button
+            id="logoutButton"
+            class="moderator-logout"
+        >
+            Выйти
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main class="moderator-main-page">
+
+
+    <!-- PAGE TITLE -->
+
+    <section class="moderator-intro">
+
+        <div>
+
+            <span class="eyebrow">
+                MANAGEMENT
+            </span>
+
+            <h1>
+                Каталог товаров
+            </h1>
+
+            <p>
+                Добавляйте товары, управляйте ценами,
+                остатками и публикацией.
+            </p>
+
+        </div>
+
+
+        <button
+            id="addProductButton"
+            class="primary-button moderator-add-button"
+        >
+            + Добавить товар
+        </button>
+
+    </section>
+
+
+    <!-- =====================================
+         STATISTICS
+    ====================================== -->
+
+    <section class="moderator-stats">
+
+        <div class="moderator-stat">
+
+            <span>
+                Всего товаров
+            </span>
+
+            <strong id="totalProducts">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="moderator-stat">
+
+            <span>
+                Опубликовано
+            </span>
+
+            <strong id="publishedProducts">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="moderator-stat">
+
+            <span>
+                Нет в наличии
+            </span>
+
+            <strong id="outOfStock">
+                0
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+         TOOLBAR
+    ====================================== -->
+
+    <section class="moderator-toolbar">
+
+        <div class="moderator-search">
+
+            <span>
+                ⌕
+            </span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Поиск товара..."
+            >
+
+        </div>
+
+
+        <select id="categoryFilter">
+
+            <option value="all">
+                Все категории
+            </option>
+
+            <option value="Одежда">
+                Одежда
+            </option>
+
+            <option value="Для дома">
+                Для дома
+            </option>
+
+            <option value="Аксессуары">
+                Аксессуары
+            </option>
+
+            <option value="Красота">
+                Красота
+            </option>
+
+        </select>
+
+
+        <select id="statusFilter">
+
+            <option value="all">
+                Все статусы
+            </option>
+
+            <option value="published">
+                Опубликованные
+            </option>
+
+            <option value="draft">
+                Черновики
+            </option>
+
+        </select>
+
+    </section>
+
+
+    <!-- =====================================
+         PRODUCTS
+    ====================================== -->
+
+    <section
+        class="moderator-products"
+        id="moderatorProducts"
+    ></section>
+
+
+</main>
+
+
+<!-- =========================================
+     PRODUCT MODAL
+========================================= -->
+
+<div
+    class="modal-overlay"
+    id="productModal"
+>
+
+    <div class="product-modal moderator-modal">
+
+
+        <button
+            class="modal-close"
+            id="closeModalButton"
+        >
+            ×
+        </button>
+
+
+        <span class="eyebrow">
+            PRODUCT
+        </span>
+
+
+        <h2 id="modalTitle">
+            Новый товар
+        </h2>
+
+
+        <p class="modal-description">
+            Заполните информацию о товаре.
+        </p>
+
+
+        <form id="productForm">
+
+
+            <input
+                type="hidden"
+                id="productId"
+            >
+
+
+            <!-- NAME -->
+
+            <label>
+
+                Название товара
+
+                <input
+                    type="text"
+                    id="productName"
+                    placeholder="Например: Oversized Knit"
+                    required
+                >
+
+            </label>
+
+
+            <!-- DESCRIPTION -->
+
+            <label>
+
+                Описание
+
+                <textarea
+                    id="productDescription"
+                    placeholder="Кратко опишите товар..."
+                    required
+                ></textarea>
+
+            </label>
+
+
+            <!-- CATEGORY -->
+
+            <label>
+
+                Категория
+
+                <select id="productCategory">
+
+                    <option value="Одежда">
+                        Одежда
+                    </option>
+
+                    <option value="Для дома">
+                        Для дома
+                    </option>
+
+                    <option value="Аксессуары">
+                        Аксессуары
+                    </option>
+
+                    <option value="Красота">
+                        Красота
+                    </option>
+
+                </select>
+
+            </label>
+
+
+            <!-- PRICE -->
+
+            <label>
+
+                Цена
+
+                <div class="moderator-price-input">
+
+                    <span>
+                        $
+                    </span>
+
+                    <input
+                        type="number"
+                        id="productPrice"
+                        min="0"
+                        step="0.01"
+                        placeholder="99"
+                        required
+                    >
+
+                </div>
+
+            </label>
+
+
+            <!-- STOCK -->
+
+            <label>
+
+                Остаток
+
+                <input
+                    type="number"
+                    id="productStock"
+                    min="0"
+                    step="1"
+                    placeholder="10"
+                    required
+                >
+
+            </label>
+
+
+            <!-- BRAND -->
+
+            <label>
+
+                Бренд
+
+                <input
+                    type="text"
+                    id="productBrand"
+                    placeholder="Например: North Studio"
+                >
+
+            </label>
+
+
+            <!-- IMAGE -->
+
+            <label>
+
+                Фотография товара
+
+                <div class="image-upload">
+
+                    <input
+                        type="file"
+                        id="productImageFile"
+                        accept="image/*"
+                    >
+
+                    <div
+                        class="image-preview"
+                        id="imagePreview"
+                    >
+                        <span>
+                            Выберите изображение
+                        </span>
+                    </div>
+
+                </div>
+
+            </label>
+
+
+            <!-- BADGE -->
+
+            <label>
+
+                Бейдж
+
+                <input
+                    type="text"
+                    id="productBadge"
+                    placeholder="NEW, HOT, -20%"
+                    maxlength="10"
+                >
+
+            </label>
+
+
+            <!-- PUBLISH -->
+
+            <label class="publish-control">
+
+                <input
+                    type="checkbox"
+                    id="productPublished"
+                >
+
+                <span>
+                    Опубликовать товар
+                </span>
+
+            </label>
+
+
+            <!-- BUTTONS -->
+
+            <div class="modal-actions">
+
+
+                <button
+                    type="button"
+                    class="cancel-button"
+                    id="cancelButton"
+                >
+                    Отмена
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="save-button"
+                >
+                    Опубликовать
+                </button>
+
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+"use strict";
+
+
+/* =========================================
+   SETTINGS
+========================================= */
+
+const PRODUCTS_KEY = "lumeraProducts";
+
+
+/* =========================================
+   ELEMENTS
+========================================= */
+
+const productModal =
+    document.getElementById("productModal");
+
+const productForm =
+    document.getElementById("productForm");
+
+const productId =
+    document.getElementById("productId");
+
+const productName =
+    document.getElementById("productName");
+
+const productDescription =
+    document.getElementById("productDescription");
+
+const productCategory =
+    document.getElementById("productCategory");
+
+const productPrice =
+    document.getElementById("productPrice");
+
+const productStock =
+    document.getElementById("productStock");
+
+const productBrand =
+    document.getElementById("productBrand");
+
+const productBadge =
+    document.getElementById("productBadge");
+
+const productPublished =
+    document.getElementById("productPublished");
+
+const productImageFile =
+    document.getElementById("productImageFile");
+
+const imagePreview =
+    document.getElementById("imagePreview");
+
+const moderatorProducts =
+    document.getElementById("moderatorProducts");
+
+const searchInput =
+    document.getElementById("searchInput");
+
+const categoryFilter =
+    document.getElementById("categoryFilter");
+
+const statusFilter =
+    document.getElementById("statusFilter");
+
+const modalTitle =
+    document.getElementById("modalTitle");
+
+
+/* =========================================
+   DEFAULT PRODUCTS
+========================================= */
+
+const DEFAULT_PRODUCTS = [
+
+    {
+        id: 1,
+        name: "Oversized Knit",
+        description: "Мягкий трикотажный свитер свободного кроя.",
+        category: "Одежда",
+        price: 89,
+        stock: 14,
+        brand: "North Studio",
+        image: "",
+        badge: "NEW",
+        published: true
+    },
+
+    {
+        id: 2,
+        name: "Ceramic Set",
+        description: "Минималистичный набор керамической посуды.",
+        category: "Для дома",
+        price: 64,
+        stock: 8,
+        brand: "Form Objects",
+        image: "",
+        badge: "HOT",
+        published: true
+    },
+
+    {
+        id: 3,
+        name: "Leather Wallet",
+        description: "Компактный кошелёк из натуральной кожи.",
+        category: "Аксессуары",
+        price: 59,
+        stock: 21,
+        brand: "Morrow Studio",
+        image: "",
+        badge: "",
+        published: true
+    }
+
+];
+
+
+/* =========================================
+   DATA
+========================================= */
+
+function getProducts() {
+
+    const saved =
+        localStorage.getItem(PRODUCTS_KEY);
+
+
+    if (!saved) {
+
+        localStorage.setItem(
+            PRODUCTS_KEY,
+            JSON.stringify(DEFAULT_PRODUCTS)
+        );
+
+        return [...DEFAULT_PRODUCTS];
+    }
+
+
+    try {
+
+        const data =
+            JSON.parse(saved);
+
+
+        if (!Array.isArray(data)) {
+            throw new Error();
+        }
+
+
+        return data;
+
+    } catch {
+
+        localStorage.setItem(
+            PRODUCTS_KEY,
+            JSON.stringify(DEFAULT_PRODUCTS)
+        );
+
+        return [...DEFAULT_PRODUCTS];
+    }
+}
+
+
+function saveProducts(products) {
+
+    localStorage.setItem(
+        PRODUCTS_KEY,
+        JSON.stringify(products)
+    );
+
+}
+
+
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+/* =========================================
+   IMAGE PREVIEW
+========================================= */
+
+let selectedImage = "";
+
+
+productImageFile.addEventListener(
+    "change",
+    function () {
+
+        const file =
+            this.files[0];
+
+
+        if (!file) {
+            return;
+        }
+
+
+        if (!file.type.startsWith("image/")) {
+
+            alert(
+                "Выберите изображение."
+            );
+
+            this.value = "";
+
+            return;
+        }
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload = function () {
+
+            selectedImage =
+                reader.result;
+
+
+            imagePreview.innerHTML = `
+
+                <img
+                    src="${selectedImage}"
+                    alt="Preview"
+                >
+
+            `;
+
+        };
+
+
+        reader.readAsDataURL(file);
+
+    }
+);
+
+
+/* =========================================
+   OPEN ADD
+========================================= */
+
+function openAddProduct() {
+
+    productForm.reset();
+
+    productId.value = "";
+
+    selectedImage = "";
+
+    imagePreview.innerHTML = `
+        <span>
+            Выберите изображение
+        </span>
+    `;
+
+    modalTitle.textContent =
+        "Новый товар";
+
+
+    productPublished.checked =
+        true;
+
+
+    productModal.classList.add(
+        "active"
+    );
+
+}
+
+
+/* =========================================
+   OPEN EDIT
+========================================= */
+
+function openEditProduct(id) {
+
+    const products =
+        getProducts();
+
+
+    const product =
+        products.find(
+            item =>
+                item.id === id
+        );
+
+
+    if (!product) {
+        return;
+    }
+
+
+    productId.value =
+        product.id;
+
+    productName.value =
+        product.name;
+
+    productDescription.value =
+        product.description;
+
+    productCategory.value =
+        product.category;
+
+    productPrice.value =
+        product.price;
+
+    productStock.value =
+        product.stock;
+
+    productBrand.value =
+        product.brand || "";
+
+    productBadge.value =
+        product.badge || "";
+
+    productPublished.checked =
+        product.published !== false;
+
+
+    selectedImage =
+        product.image || "";
+
+
+    if (selectedImage) {
+
+        imagePreview.innerHTML = `
+
+            <img
+                src="${selectedImage}"
+                alt="Preview"
+            >
+
+        `;
+
+    } else {
+
+        imagePreview.innerHTML = `
+            <span>
+                Выберите изображение
+            </span>
+        `;
+    }
+
+
+    modalTitle.textContent =
+        "Изменить товар";
+
+
+    productModal.classList.add(
+        "active"
+    );
+
+}
+
+
+/* =========================================
+   SAVE PRODUCT
+========================================= */
+
+productForm.addEventListener(
+    "submit",
+    function (event) {
+
+        event.preventDefault();
+
+
+        const name =
+            productName.value.trim();
+
+        const description =
+            productDescription.value.trim();
+
+        const category =
+            productCategory.value;
+
+        const price =
+            Number(
+                productPrice.value
+            );
+
+        const stock =
+            Number(
+                productStock.value
+            );
+
+        const brand =
+            productBrand.value.trim();
+
+        const badge =
+            productBadge.value.trim();
+
+        const published =
+            productPublished.checked;
+
+
+        if (!name) {
+
+            alert(
+                "Введите название товара."
+            );
+
+            return;
+        }
+
+
+        if (!description) {
+
+            alert(
+                "Введите описание товара."
+            );
+
+            return;
+        }
+
+
+        if (
+            !Number.isFinite(price) ||
+            price < 0
+        ) {
+
+            alert(
+                "Введите корректную цену."
+            );
+
+            return;
+        }
+
+
+        if (
+            !Number.isInteger(stock) ||
+            stock < 0
+        ) {
+
+            alert(
+                "Введите корректный остаток."
+            );
+
+            return;
+        }
+
+
+        const products =
+            getProducts();
+
+
+        const currentId =
+            productId.value;
+
+
+        if (currentId) {
+
+            const product =
+                products.find(
+                    item =>
+                        item.id ===
+                        Number(currentId)
+                );
+
+
+            if (product) {
+
+                product.name =
+                    name;
+
+                product.description =
+                    description;
+
+                product.category =
+                    category;
+
+                product.price =
+                    price;
+
+                product.stock =
+                    stock;
+
+                product.brand =
+                    brand;
+
+                product.badge =
+                    badge;
+
+                product.published =
+                    published;
+
+
+                /*
+                    Если новую фотографию
+                    не выбрали — старая
+                    остаётся.
+                */
+
+                if (selectedImage) {
+
+                    product.image =
+                        selectedImage;
+                }
+
+            }
+
+        }
+
+        else {
+
+            products.push({
+
+                id: Date.now(),
+
+                name,
+
+                description,
+
+                category,
+
+                price,
+
+                stock,
+
+                brand,
+
+                image: selectedImage,
+
+                badge,
+
+                published
+
+            });
+
+        }
+
+
+        saveProducts(products);
+
+
+        closeModal();
+
+
+        renderProducts();
+
+        updateStatistics();
+
+    }
+);
+
+
+/* =========================================
+   DELETE
+========================================= */
+
+function deleteProduct(id) {
+
+    const products =
+        getProducts();
+
+
+    const product =
+        products.find(
+            item =>
+                item.id === id
+        );
+
+
+    if (!product) {
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+            `Удалить "${product.name}"?`
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    const updated =
+        products.filter(
+            item =>
+                item.id !== id
+        );
+
+
+    saveProducts(updated);
+
+
+    renderProducts();
+
+    updateStatistics();
+
+}
+
+
+/* =========================================
+   TOGGLE PUBLISH
+========================================= */
+
+function togglePublish(id) {
+
+    const products =
+        getProducts();
+
+
+    const product =
+        products.find(
+            item =>
+                item.id === id
+        );
+
+
+    if (!product) {
+        return;
+    }
+
+
+    product.published =
+        !product.published;
+
+
+    saveProducts(products);
+
+
+    renderProducts();
+
+    updateStatistics();
+
+}
+
+
+/* =========================================
+   RENDER
+========================================= */
+
+function renderProducts() {
+
+    const products =
+        getProducts();
+
+
+    const query =
+        searchInput.value
+            .trim()
+            .toLowerCase();
+
+
+    const category =
+        categoryFilter.value;
+
+
+    const status =
+        statusFilter.value;
+
+
+    const filtered =
+        products.filter(
+            product => {
+
+
+                const matchesSearch =
+                    !query ||
+                    product.name
+                        .toLowerCase()
+                        .includes(query) ||
+                    product.description
+                        .toLowerCase()
+                        .includes(query);
+
+
+                const matchesCategory =
+                    category === "all" ||
+                    product.category === category;
+
+
+                const matchesStatus =
+                    status === "all" ||
+                    (
+                        status === "published" &&
+                        product.published
+                    ) ||
+                    (
+                        status === "draft" &&
+                        !product.published
+                    );
+
+
+                return (
+                    matchesSearch &&
+                    matchesCategory &&
+                    matchesStatus
+                );
+
+            }
+        );
+
+
+    moderatorProducts.innerHTML = "";
+
+
+    if (filtered.length === 0) {
+
+        moderatorProducts.innerHTML = `
+
+            <div class="moderator-empty">
+
+                <div>
+                    ◌
+                </div>
+
+                <h3>
+                    Ничего не найдено
+                </h3>
+
+                <p>
+                    Попробуйте изменить параметры поиска.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    filtered.forEach(
+        (product, index) => {
+
+            const card =
+                document.createElement("article");
+
+
+            card.className =
+                "moderator-product-card";
+
+
+            const image =
+                product.image
+                    ? `
+                        <img
+                            src="${product.image}"
+                            alt="${escapeHTML(product.name)}"
+                        >
+                    `
+                    : `
+                        <div class="moderator-product-placeholder">
+                            ${String(index + 1).padStart(2, "0")}
+                        </div>
+                    `;
+
+
+            card.innerHTML = `
+
+                <div class="moderator-product-image">
+
+                    ${image}
+
+                </div>
+
+
+                <div class="moderator-product-info">
+
+                    <span class="product-category">
+                        ${escapeHTML(product.category)}
+                    </span>
+
+                    <h3>
+                        ${escapeHTML(product.name)}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(product.brand || "Без бренда")}
+                    </p>
+
+                </div>
+
+
+                <div class="moderator-product-price">
+                    $${Number(product.price).toFixed(2)}
+                </div>
+
+
+                <div class="moderator-stock">
+
+                    <span>
+                        Остаток
+                    </span>
+
+                    <strong>
+                        ${product.stock}
+                    </strong>
+
+                </div>
+
+
+                <div class="moderator-publication">
+
+                    <span class="${
+                        product.published
+                            ? "published"
+                            : "draft"
+                    }">
+
+                        ${
+                            product.published
+                                ? "Опубликован"
+                                : "Черновик"
+                        }
+
+                    </span>
+
+                </div>
+
+
+                <div class="moderator-product-actions">
+
+                    <button
+                        class="edit-product"
+                        data-id="${product.id}"
+                    >
+                        Изменить
+                    </button>
+
+
+                    <button
+                        class="toggle-product"
+                        data-id="${product.id}"
+                    >
+                        ${
+                            product.published
+                                ? "Снять"
+                                : "Опубликовать"
+                        }
+                    </button>
+
+
+                    <button
+                        class="delete-product"
+                        data-id="${product.id}"
+                    >
+                        Удалить
+                    </button>
+
+                </div>
+
+            `;
+
+
+            moderatorProducts.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   STATISTICS
+========================================= */
+
+function updateStatistics() {
+
+    const products =
+        getProducts();
+
+
+    document.getElementById(
+        "totalProducts"
+    ).textContent =
+        products.length;
+
+
+    document.getElementById(
+        "publishedProducts"
+    ).textContent =
+        products.filter(
+            product =>
+                product.published
+        ).length;
+
+
+    document.getElementById(
+        "outOfStock"
+    ).textContent =
+        products.filter(
+            product =>
+                product.stock === 0
+        ).length;
+
+}
+
+
+/* =========================================
+   EVENTS
+========================================= */
+
+document
+    .getElementById("addProductButton")
+    .addEventListener(
+        "click",
+        openAddProduct
+    );
+
+
+document
+    .getElementById("closeModalButton")
+    .addEventListener(
+        "click",
+        closeModal
+    );
+
+
+document
+    .getElementById("cancelButton")
+    .addEventListener(
+        "click",
+        closeModal
+    );
+
+
+moderatorProducts.addEventListener(
+    "click",
+    event => {
+
+        const edit =
+            event.target.closest(
+                ".edit-product"
+            );
+
+
+        const toggle =
+            event.target.closest(
+                ".toggle-product"
+            );
+
+
+        const remove =
+            event.target.closest(
+                ".delete-product"
+            );
+
+
+        if (edit) {
+
+            openEditProduct(
+                Number(
+                    edit.dataset.id
+                )
+            );
+
+        }
+
+
+        if (toggle) {
+
+            togglePublish(
+                Number(
+                    toggle.dataset.id
+                )
+            );
+
+        }
+
+
+        if (remove) {
+
+            deleteProduct(
+                Number(
+                    remove.dataset.id
+                )
+            );
+
+        }
+
+    }
+);
+
+
+searchInput.addEventListener(
+    "input",
+    renderProducts
+);
+
+
+categoryFilter.addEventListener(
+    "change",
+    renderProducts
+);
+
+
+statusFilter.addEventListener(
+    "change",
+    renderProducts
+);
+
+
+productModal.addEventListener(
+    "click",
+    event => {
+
+        if (
+            event.target ===
+            productModal
+        ) {
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+document
+    .getElementById("logoutButton")
+    .addEventListener(
+        "click",
+        () => {
+
+            localStorage.removeItem(
+                "lumeraRole"
+            );
+
+            localStorage.removeItem(
+                "lumeraUser"
+            );
+
+            window.location.href =
+                "login.html";
+
+        }
+    );
+
+
+function closeModal() {
+
+    productModal.classList.remove(
+        "active"
+    );
+
+}
+
+
+/* =========================================
+   INIT
+========================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const role =
+    localStorage.getItem("lumeraRole");
+
+
+        if (role !== "moderator") {
+
+        window.location.href =
+            "login.html?role=moderator";
+
+        return;
+        }
+
+
+        const email =
+            localStorage.getItem(
+                "lumeraUser"
+            );
+
+
+        if (email) {
+
+            document.getElementById(
+                "moderatorEmail"
+            ).textContent =
+                email;
+
+        }
+
+
+        renderProducts();
+
+        updateStatistics();
+
+    }
+);
+
+</script>
+
+</body>
+</html>
